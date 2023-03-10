@@ -1,0 +1,35 @@
+<app-container>
+  <div class="content">
+    <div class="search-input">
+      <input
+        type="text"
+        [(ngModel)]="inputSearch"
+        placeholder="Digite o nome do pokemon..."
+      />
+      <button (click)="getPokemonApiData()">Pesquisar</button>
+    </div>
+    <div *ngIf="data.searching" class="show-pokemon-data">
+      <header>
+        <h3>{{ data.pokemon.name }}</h3>
+        <span>Nº {{ data.pokemon.id }}</span>
+      </header>
+      <main>
+        <div class="pokemon-img">
+          <img
+            src="{{
+              data.pokemon.sprites?.other?.['official-artwork']?.front_default
+            }}"
+            alt=""
+          />
+        </div>
+        <div class="pokemon-data">
+          <ul>
+            <li *ngFor="let type of data.pokemon.types" class="pokemon-types">
+              {{ type.type.name }}
+            </li>
+          </ul>
+        </div>
+      </main>
+    </div>
+  </div>
+</app-container>
